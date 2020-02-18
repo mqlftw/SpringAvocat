@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="ISO-8859-1">
+<title>Direction</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link
+	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="head">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="span6">
+							<h1 class="muted">E-COMMERCE</h1>
+						</div>
+
+						<div class="span4 offset2" style="margin-top: 15px;">
+							<button class="btn pull-right" type="button">Sign In</button>
+							</div>
+							
+						</div>
+					</div>
+					</div>
+					<div class="navbar">
+						<div class="navbar-inner">
+							<div class="container">
+								<ul class="nav">
+									<li><a href="#">Explore Product</a></li>
+
+									<li><a href="#">Search</a></li>
+
+									<li><a href="#">Features</a></li>
+
+									<li><a href="#">Blog</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</head>
+
+	<body>
+		<div class="panel-body">
+			<div class="container">
+				<nav class="navbar navbar-dark bg-dark">
+					<a class="navbar-brand">Recherche</a>
+					<div class="form-group mb-2">
+					<form th:action="@{/Recherche}" method="GET">
+						<input type="text" class="form-control" name="nomAvocat"
+							id="nomAvocat" placeholder="Search Avocat" />
+							<input type="submit" value="Search" class="btn btn-primary" />
+						</form>
+					</div>
+
+					<div class="navbar-header">
+						<div th:switch="${list}">
+							<h3 th:case="null">Aucun Produit !</h3>
+							<div th:case="*" class="container">
+								<form class="form-inline"></form>
+
+								<h3 align="center">Liste des Produits</h3>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Nom de produit</th>
+											<th>Description</th>
+											<th>Prix HT</th>
+											<th>Prix TTC</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="produitVo : ${list}">
+											<td th:text="${produitVo.nomProduit}"></td>
+											<td th:text="${produitVo.Description}"></td>
+											<td th:text="${produitVo.prixHT}"></td>
+											<td th:text="${produitVo.prixTTC}"></td>
+											<td><a
+												th:href="@{/edit/{id}(id=${produitVo.idProduit})}">Edit</a></td>
+											<td><a
+												th:href="@{/delete/{id}(id=${produitVo.idProduit})}">Delete</a></td>
+										</tr>
+									</tbody>
+								</table>
+								</form>
+							</div>
+							<p>
+								<a href="/form">Ajouter un nouvel produit</a>
+							</p>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+
+		</div>
+
+
+
+	</body>
+</html>

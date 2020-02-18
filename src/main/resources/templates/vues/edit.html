@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Affichage des avocats</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link
+	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="head">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="span6">
+							<h1 class="muted">E-COMMERCE</h1>
+						</div>
+
+						<div class="span4 offset2" style="margin-top: 15px;">
+							<button class="btn pull-right" type="button">Sign In</button>
+						</div>
+
+					</div>
+				</div>
+				<div class="navbar">
+					<div class="navbar-inner">
+						<div class="container">
+							<ul class="nav">
+								<li><a href="#">Explore Product</a></li>
+
+								<li><a href="#">Search</a></li>
+
+								<li><a href="#">Features</a></li>
+
+								<li><a href="#">Blog</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form th:action="@{/save}" method="POST" class="form-signin"
+			th:object="${produitVo}">
+			<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+			<br /> <input th:field="*{idProduit}" type="hidden" id="idProduit"
+				name="idProduit" class="form-control" /> <input
+				th:field="*{nomProduit}" type="text" id="nomProduit"
+				name="nomProduit" th:placeholder="nomProduit" class="form-control" />
+			<br /> <input th:field="*{Description}" type="text" id="Description"
+				name="Description" th:placeholder="Description" class="form-control" />
+			<br /> <input th:field="*{prixHT}" type="text" id="prixHT"
+				name="prixHT" th:placeholder="prixHT" class="form-control" /> <br />
+			<input th:field="*{prixTTC}" type="text" id="prixTTC" name="prixTTC"
+				th:placeholder="prixTTC" class="form-control" /> <br />
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit"
+				value="Login" type="Submit" th:text="Ajouter"></button>
+		</form>
+	</div>
+
+</body>
+</html>
+
+

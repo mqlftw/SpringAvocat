@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Affichage des Tribunals</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+	<div class="panel-body">
+		<div class="container">
+			<nav class="navbar navbar-dark bg-dark">
+				<a class="navbar-brand">Recherche</a>
+
+				<div class="form-group mb-2">
+					<form th:action="@{/Tribunal/Recherche}" method="GET">
+						<input type="text" class="form-control" th:name="lieuTribunal" id="lieuTribunal"
+							placeholder="Search Tribunal" /> <input type="submit" value="Search"
+							class="btn btn-primary" />
+					</form>
+				</div>
+
+				<div class="navbar-header">
+					<div th:switch="${listTribunal}">
+						<h3 th:case="null">Aucun Client !</h3>
+						<div th:case="*" class="container">
+							<form class="form-inline">
+
+								<h3 align="center">Liste des Clients</h3>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Lieu tribunal</th>
+											<th>Type Tribunal</th>
+
+
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="Tribunal : ${listTribunal}">
+											<td th:text="${Tribunal.lieuTribunal}"></td>
+											<td th:text="${Tribunal.typeTribunal}"></td>
+
+
+
+											<td><a th:href="@{/Tribunal/edit/{id}(id=${Tribunal.numTribunal})}">Edit</a>
+											</td>
+											<td><a
+													th:href="@{/Tribunal/delete/{id}(id=${Tribunal.numTribunal})}">Delete</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<p>
+							<a th:href="@{/Tribunal/form}">Ajouter un nouvel RDV</a>
+						</p>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>

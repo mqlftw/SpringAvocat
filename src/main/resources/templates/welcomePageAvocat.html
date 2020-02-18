@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head >
+	<title>Avocat</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="container">
+			<span th:utext="${username}"></span> <br>
+
+			<form th:action="@{/Seance/list}" method="get">
+				<button class="btn btn-primary btn-lg btn-block" name="Users" type="Submit">Gestion des Seances</button>
+			</form>
+			<br>
+			<form th:action="@{/Doc/list}" method="get">
+				<button class="btn btn-primary btn-lg btn-block" name="Docs" type="Submit">Gestion des Archives</button>
+			</form>
+			<br />
+
+			<form th:action="@{/Proce/list}" method="get">
+				<button class="btn btn-primary btn-lg btn-block" name="Users" type="Submit">Gestion des Proces</button>
+			</form>
+
+		</div>
+	
+
+
+</body>
+
+</html>

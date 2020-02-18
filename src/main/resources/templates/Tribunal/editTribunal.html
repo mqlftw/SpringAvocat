@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit Tribunal</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+	<div class="center">
+	<div class="container">
+
+		<form th:action="@{/Tribunal/save}" method="POST" class="form-signin" th:object="${Tribunal}">
+			<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+			<br /> <input th:field="*{numTribunal}" type="hidden" id="numTribunal" name="numTribunal"
+				class="form-control" />
+
+			<br />
+
+			<input th:field="*{lieuTribunal}" type="text" id="lieuTribunal" name="lieuTribunal"
+				th:placeholder="lieuTribunal" class="form-control" /> <br /> <input th:field="*{typeTribunal}"
+				type="text" id="typeTribunal" name="typeTribunal" th:placeholder="typeTribunal" class="form-control" />
+
+
+
+			<br />
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+			</div>
+			<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+				th:text="Ajouter"></button>
+		</form>
+		</div>
+	</div>
+	
+
+
+</body>
+
+</html>

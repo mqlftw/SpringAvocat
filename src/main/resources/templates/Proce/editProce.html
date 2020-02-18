@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit des Proces</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="center">
+		<div class="container">
+
+			<form th:action="@{/Proce/save}" method="POST" class="form-signin" th:object="${Proce}">
+				<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+				<br /> <input th:field="*{numProce}" type="hidden" id="numProce" name="numProce" class="form-control" />
+
+				<br />
+
+				<select class="form-control" name="Avocat" id="Avocat">
+					<option value="0">select Avocat</option>
+					<option th:each="Avocat : ${listAvocat}" th:value="${Avocat.numAvocat}"
+						th:text="${Avocat.nomAvocat}"></option>
+				</select>
+
+				<br />
+				<select class="form-control" name="TypeProce" id="TypeProce">
+					<option value="0">select Type of Proce</option>
+					<option th:each="TypeProce : ${listTypeProce}" th:value="${TypeProce.numTypeProce}"
+						th:text="${TypeProce.nomTypeProce}"></option>
+				</select>
+				<br />
+				<input th:field="*{sujetProce}" type="text" id="sujetProce" name="sujetProce"
+					th:placeholder="sujetProce" class="form-control" /> <br />
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+				</div>
+				<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+					th:text="Ajouter"></button>
+			</form>
+		</div>
+		</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit des clients</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+		<div class="center">
+		<div class="container">
+
+			<form th:action="@{/Client/save}" method="POST" class="form-signin" th:object="${Client}">
+				<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+				<br />
+				<input th:field="*{id}" type="hidden" id="id" name="id" class="form-control" />
+				<input th:field="*{nomClient}" type="text" id="nomClient" name="nomClient" th:placeholder="nomClient"
+					class="form-control" /> <br />
+				<input th:field="*{prenomClient}" type="text" id="prenomClient" name="prenomClient"
+					th:placeholder="prenomClient" class="form-control" /> <br />
+				<input th:field="*{telClient}" type="text" id="telClient" name="telClient" th:placeholder="telClient"
+					class="form-control" /> <br />
+				<input th:field="*{emailClient}" type="text" id="emailClient" name="emailClient"
+					th:placeholder="emailClient" class="form-control" /> <br />
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+				</div>
+				<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+					th:text="Ajouter"></button>
+			</form>
+			</div>
+		</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit des RDV</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<div th:replace="/index.html :: header"></div>
+
+</head>
+
+<body>
+	<div class="center" >
+		<div class="container">
+			<form th:action="@{/RDV/save}" method="POST" class="form-signin" th:object="${RDV}">
+				<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+				<br /> <input th:field="*{numRDV}" type="hidden" id="numRDV" name="numRDV" class="form-control" />
+
+				<select class="form-control" name="Avocat" id="Avocat">
+					<option value="0">select Avocat</option>
+					<option th:each="Avocat : ${listAvocat}" th:value="${Avocat.numAvocat}"
+						th:text="${Avocat.nomAvocat + ' ' + Avocat.prenomAvocat}"></option>
+				</select>
+
+
+				<br />
+
+				<select class="form-control" name="Client" id="Client">
+					<option value="0">select Client</option>
+					<option th:each="Client : ${listClients}" th:value="${Client.id}" th:text="${Client.nomClient + ' ' + Client.prenomClient} ">
+					</option>
+				</select>
+
+				<br />
+
+				<input th:field="*{dateRDV}" type="date" id="dateRDV" name="dateRDV" th:placeholder="dateRDV"
+					class="form-control" /> <br /> <input th:field="*{heureRDV}" type="time" id="heureRDV"
+					name="heureRDV" th:placeholder="heureRDV" min="09:00" max="18:00" required class="form-control" />
+				<br /> <input th:field="*{sujetRDV}" type="text" id="sujetRDV" name="sujetRDV" th:placeholder="sujetRDV"
+					class="form-control" /> <br />
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+				</div>
+				<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+					th:text="Ajouter"></button>
+			</form>
+		</div>
+		</div>
+
+
+</body>
+
+
+</html>

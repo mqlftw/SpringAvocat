@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Direction</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="panel-body">
+		<div class="container">
+			<nav class="navbar navbar-dark bg-dark">
+				<a class="navbar-brand">Recherche</a>
+
+
+				<div class="navbar-header">
+					<div th:switch="${list}">
+						<h3 th:case="null">Aucun Avocat !</h3>
+						<div th:case="*" class="container">
+							<form class="form-inline">
+								<input class="form-control mr-sm-2" type="search"
+									placeholder="Search" aria-label="Search" name="nomAvocat">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									type="submit">Search</button>
+							</form>
+							<form th:action="@{/Recherche}" method="GET" class="form-signin"
+								th:object="${nomAvocat}">
+
+								<h3 align="center">Liste des Avocats</h3>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Nom</th>
+											<th>Prenom</th>
+											<th>Telephone</th>
+											<th>Salaire</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="avocatVo : ${avocatList}">
+											<td th:text="${avocatVo.nomAvocat}"></td>
+											<td th:text="${avocatVo.prenomAvocat}"></td>
+											<td th:text="${avocatVo.telAvocat}"></td>
+											<td th:text="${avocatVo.Salaire}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>

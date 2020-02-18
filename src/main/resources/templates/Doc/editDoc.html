@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit des Documents</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/styleC.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="container">
+
+			<form th:action="@{/Doc/save}" method="POST" class="form-signin" th:object="${Doc}">
+				<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+				<br /> <input th:field="*{numDoc}" type="hidden" id="numDoc" name="numDoc" class="form-control" />
+
+				<br />
+
+				<select class="form-control" name="Proce" id="Proce">
+					<option value="0">select Proce</option>
+					<option th:each="Proce : ${listProce}" th:value="${Proce.numProce}" th:text="${Proce.sujetProce}">
+					</option>
+				</select>
+
+				<br />
+
+				<input th:field="*{nomDoc}" type="text" id="nomDoc" name="nomDoc" th:placeholder="nomDoc"
+					class="form-control" /> <br />
+
+				<input th:field="*{sujetDoc}" type="text" id="sujetDoc" name="sujetDoc" th:placeholder="sujetDoc"
+					class="form-control" />
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+				</div>
+				<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+					th:text="Ajouter"></button>
+			</form>
+		</div>
+
+
+</body>
+
+</html>

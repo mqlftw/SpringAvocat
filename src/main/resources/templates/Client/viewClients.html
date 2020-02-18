@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Affichage des clients</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="panel-body">
+			<div class="container">
+
+				<nav class="navbar navbar-dark bg-dark">
+					<a class="navbar-brand">Recherche</a>
+
+					<div class="form-group mb-2">
+						<form th:action="@{/Client/Recherche}" method="GET">
+							<input type="text" class="form-control" th:name="nomClient" id="nomClient"
+								placeholder="Search User" />
+							<input type="submit" value="Search" class="btn btn-primary" />
+						</form>
+					</div>
+
+					<div class="navbar-header">
+						<div th:switch="${listClients}">
+							<h3 th:case="null">Aucun Client !</h3>
+							<div th:case="*" class="container">
+								<form class="form-inline">
+
+									<h3 align="center">Liste des Clients</h3>
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Nom</th>
+												<th>Prenom</th>
+												<th>Telephone</th>
+												<th>Email</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="Client : ${listClients}">
+												<td th:text="${Client.nomClient}"></td>
+												<td th:text="${Client.prenomClient}"></td>
+												<td th:text="${Client.telClient}"></td>
+												<td th:text="${Client.emailClient}"></td>
+												<td><a th:href="@{/Client/edit/{id}(id=${Client.id})}">Edit</a></td>
+												<td><a th:href="@{/Client/delete/{id}(id=${Client.id})}">Delete</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<p>
+								<a th:href="@{/Client/form}">Ajouter un nouvel Client</a>
+							</p>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+
+
+</body>
+
+</html>

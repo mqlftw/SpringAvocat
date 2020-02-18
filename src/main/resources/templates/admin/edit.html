@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Edit des avocats</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<div th:replace="/index.html :: header"></div>
+
+</head>
+
+<body>
+
+		<div class="container">
+			<div class="center">
+			<form th:action="@{/admin/save}" method="POST" class="form-signin" th:object="${avocatVo}">
+				<h3 class="form-signin-heading" th:text="Nouveau"></h3>
+				<br />
+				<input th:field="*{numAvocat}" type="hidden" id="numAvocat" name="numAvocat" class="form-control" />
+				<input th:field="*{nomAvocat}" type="text" id="nomAvocat" name="nomAvocat" th:placeholder="nomAvocat"
+					class="form-control" /> <br />
+				<input th:field="*{prenomAvocat}" type="text" id="prenomAvocat" name="prenomAvocat"
+					th:placeholder="prenomAvocat" class="form-control" /> <br />
+				<input th:field="*{telAvocat}" type="text" id="telAvocat" name="telAvocat" th:placeholder="telAvocat"
+					class="form-control" /> <br />
+				<input th:field="*{Salaire}" type="text" id="Salaire" name="Salaire" th:placeholder="Salaire"
+					class="form-control" /> <br />
+				<div align="center" th:if="${param.error}">
+					<p style="font-size: 20; color: #FF1C19;">ERROR</p>
+				</div>
+				<button class="btn btn-lg btn-primary" name="Submit" value="Login" type="Submit"
+					th:text="Ajouter"></button>
+			</form>
+			</div>
+		</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Affichage des paiments</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+	<div class="panel-body">
+		<div class="container">
+			<nav class="navbar navbar-dark bg-dark">
+				<a class="navbar-brand"></a>
+
+
+
+				<div class="navbar-header">
+					<div th:switch="${listPaiment}">
+						<h3 th:case="null">Aucun Document !</h3>
+						<div th:case="*" class="container">
+							<form class="form-inline">
+
+								<h3 align="center">Liste des Paiments</h3>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Tarif</th>
+											<th>Type of paiment</th>
+											<th>Proce's subject</th>
+
+
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="Paiment : ${listPaiment}">
+											<td th:text="${Paiment.Tarif}"></td>
+											<td th:text="${Paiment.typePaiment}"></td>
+											<!--<td th:text="${Doc.proce.Avocat.nomAvocat}"></td>
+											<td th:text="${Doc.proce.Avocat.PrenomAvocat}"></td>
+											<td th:text="${Doc.proce.Avocat.telAvocat}"></td> -->
+
+											<td th:text="${Paiment.proce.sujetProce}"></td>
+
+
+
+
+											<td><a th:href="@{/Paiment/edit/{id}(id=${Paiment.numPaiment})}">Edit</a>
+											</td>
+											<td><a
+													th:href="@{/Paiment/delete/{id}(id=${Paiment.numPaiment})}">Delete</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<p>
+							<a th:href="@{/Paiment/form}">Ajouter un nouvel Paiment</a>
+						</p>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>

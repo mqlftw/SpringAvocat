@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Affichage des seances</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="panel-body">
+			<div class="container">
+				<nav class="navbar navbar-dark bg-dark">
+					<a class="navbar-brand">Recherche</a>
+
+					<div class="form-group mb-2">
+						<form th:action="@{/Seance/Recherche}" method="GET">
+							<input type="text" class="form-control" th:name="sujetProce" id="sujetProce"
+								placeholder="Search Seance" /> <input type="submit" value="Search"
+								class="btn btn-primary" />
+						</form>
+					</div>
+
+					<div class="navbar-header">
+						<div th:switch="${listSeance}">
+							<h3 th:case="null">Aucune Seance !</h3>
+							<div th:case="*" class="container">
+								<form class="form-inline">
+
+									<h3 align="center">Liste des Seances</h3>
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Nombre de judges </th>
+												<th>Date de seance</th>
+												<th>Heure de seance</th>
+												<th>Suject de Proce</th>
+												<th>Lieu de Tribunal</th>
+												<th>Type de Tribunal</th>
+
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="Seance : ${listSeance}">
+												<td th:text="${Seance.Nbrjudge}"></td>
+												<td th:text="${Seance.dateSeance}"></td>
+												<td th:text="${Seance.heurSeance}"></td>
+												<td th:text="${Seance.proce.sujetProce}"></td>
+												<td th:text="${Seance.tribunal.lieuTribunal}"></td>
+												<td th:text="${Seance.tribunal.typeTribunal}"></td>
+
+
+
+
+												<td><a th:href="@{/Seance/edit/{id}(id=${Seance.numSeance})}">Edit</a>
+												</td>
+												<td><a
+														th:href="@{/Seance/delete/{id}(id=${Seance.numSeance})}">Delete</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<p>
+								<a th:href="@{/Seance/form}">Ajouter une nouvelle Seance</a>
+							</p>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+
+		</div>
+
+	
+
+
+</body>
+
+</html>

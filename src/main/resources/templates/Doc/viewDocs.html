@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Affichage des documents</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+		id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<div th:replace="/index.html :: header"></div>
+</head>
+
+<body>
+
+		<div class="panel-body">
+			<div class="container">
+				<nav class="navbar navbar-dark bg-dark">
+					<a class="navbar-brand">Recherche</a>
+
+					<div class="form-group mb-2">
+						<form th:action="@{/Doc/Recherche}" method="GET">
+							<input type="text" class="form-control" th:name="sujetDoc" id="sujetDoc"
+								placeholder="Search Doc" /> <input type="submit" value="Search"
+								class="btn btn-primary" />
+						</form>
+					</div>
+
+					<div class="navbar-header">
+						<div th:switch="${listDocs}">
+							<h3 th:case="null">Aucun Document !</h3>
+							<div th:case="*" class="container">
+								<form class="form-inline">
+
+									<h3 align="center">Liste des documents</h3>
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Document's name</th>
+												<th>Document's subject</th>
+												<th>Proce's subject</th>
+
+
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="Doc : ${listDocs}">
+												<td th:text="${Doc.nomDoc}"></td>
+												<td th:text="${Doc.sujetDoc}"></td>
+												<!--<td th:text="${Doc.proce.Avocat.nomAvocat}"></td>
+											<td th:text="${Doc.proce.Avocat.PrenomAvocat}"></td>
+											<td th:text="${Doc.proce.Avocat.telAvocat}"></td> -->
+
+												<td th:text="${Doc.proce.sujetProce}"></td>
+
+
+
+
+												<td><a th:href="@{/Doc/edit/{id}(id=${Doc.numDoc})}">Edit</a></td>
+												<td><a th:href="@{/Doc/delete/{id}(id=${Doc.numDoc})}">Delete</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<p>
+								<a th:href="@{/Doc/form}">Ajouter un nouvel Document</a>
+							</p>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+
+		</div>
+
+
+
+</body>
+
+</html>
